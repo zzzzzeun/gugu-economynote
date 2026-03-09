@@ -117,14 +117,16 @@ const apiKey = "f923a6c18ee647ef9eee5be98ae618b7";
 const newsUrl = `https://newsapi.org/v2/top-headlines?country=kr&category=business&pageSize=5&apiKey=${apiKey}`;
 
 fetch("/api/news")
-  .then(res => res.json())
-  .then(data => {
-    const list = document.getElementById('newsList');
+  .then(function(res) {
+    return res.json();
+  })
+  .then(function(data) {
+    var list = document.getElementById("newsList");
     list.innerHTML = "";
 
-    if(data.articles && data.articles.length > 0){
-      data.articles.forEach(article => {
-        const a = document.createElement('a');
+    if (data.articles && data.articles.length > 0) {
+      data.articles.forEach(function(article) {
+        var a = document.createElement("a");
         a.href = article.url;
         a.target = "_blank";
         a.innerText = "• " + article.title;
@@ -134,15 +136,9 @@ fetch("/api/news")
       list.innerText = "뉴스를 불러오지 못했습니다.";
     }
   })
-  .catch(() => {
-    document.getElementById('newsList').innerText = "뉴스를 불러오지 못했습니다.";
-  });
-  .catch(() => {
-    document.getElementById('newsList').innerText = "뉴스를 불러오지 못했습니다.";
-  });
-  })
-  .catch(() => {
-    document.getElementById('newsList').innerText = "뉴스를 불러오지 못했습니다.";
+  .catch(function() {
+    document.getElementById("newsList").innerText =
+      "뉴스를 불러오지 못했습니다.";
   });
 
 // 저장 기능
