@@ -116,7 +116,7 @@ document.getElementById('todayDate').innerText =
 const apiKey = "f923a6c18ee647ef9eee5be98ae618b7";
 const newsUrl = `https://newsapi.org/v2/top-headlines?country=kr&category=business&pageSize=5&apiKey=${apiKey}`;
 
-fetch(newsUrl)
+fetch("/api/news")
   .then(res => res.json())
   .then(data => {
     const list = document.getElementById('newsList');
@@ -134,6 +134,9 @@ fetch(newsUrl)
       list.innerText = "뉴스를 불러오지 못했습니다.";
     }
   })
+  .catch(() => {
+    document.getElementById('newsList').innerText = "뉴스를 불러오지 못했습니다.";
+  });
   .catch(() => {
     document.getElementById('newsList').innerText = "뉴스를 불러오지 못했습니다.";
   });
